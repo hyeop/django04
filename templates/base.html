@@ -1,0 +1,57 @@
+<hr>
+{% if user.is_authenticated %}
+    <div>
+        <a href="{% url 'acc:index' %}" class="menu">HOME</a>
+        <a href="{% url 'board:index' %}" class="menu">BOARD</a>
+        <a href="{% url 'vote:index' %}" class="menu">VOTE</a>
+        <a href="{% url 'trans:index' %}" class="menu">TRANS</a>
+        <a href="{% url 'acc:profile' %}" class="menu">PROFILE</a>
+        <a href="{% url 'acc:logout' %}" class="menu">LOGOUT</a>
+        접속중인 계정 : {{user}}
+    </div>
+{% else %}
+    <div>
+        <a href="{% url 'acc:index' %}" class="menu">HOME</a>
+        <a href="{% url 'acc:login' %}" class="menu">LOGIN</a>
+        <a href="{% url 'acc:signup' %}" class="menu">SIGNUP</a>
+    </div>
+{% endif %}
+
+<hr>
+
+{% for i in messages %}
+    <div class="{{i.tags}}">
+        <b>{{ i.tags|upper }}</b> {{ i.message }}
+    </div>
+{% endfor %}
+
+
+
+{% block con %}
+{% endblock %}
+
+<style>
+    .error{
+        background-color: rgba(255, 105, 68, 0.349);
+    }
+    .success{
+        background-color: rgba(68, 211, 255, 0.555);
+    }
+    .info{
+        background-color: rgba(39, 37, 37, 0.233);
+    }
+    .warning{
+        background-color: rgba(255, 243, 68, 0.329);
+    }
+    
+    .menu{
+        text-decoration: none;
+        font-size: 25px;
+        color:black;
+        font-weight: bold;
+        margin-right: 30px;
+    }
+    .menu:hover{
+        color:blue;
+    }
+</style>
